@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spriter для kotbread</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.min.css"
+    />
+    <style>
+      html {
+        background-color: black;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+      }
+      #hello {
+        color: white;
+        padding: 1em;
+      }
+      #hello > h1,
+      h2,
+      h3 {
+        margin: 0;
+      }
+      #hello > h1 > b {
+        color: red;
+      }
+      #worker {
+        display: none;
+      }
+      #wrapper {
+        width: 200%;
+        transform-origin: 0 0;
+        transform: scale(0.5);
+      }
+      #canvas {
+        position: absolute;
+        z-index: -500;
+      }
+      td {
+        padding: 0;
+      }
+    </style>
+    <script>
+      // Simple File Reader
+      // by Ikysu
+
+      window._SFR = (func, file) => {
+        return new Promise((resolve, reject) => {
+          const FR = new FileReader();
+          FR.addEventListener(
+            "load",
+            () => {
+              resolve(FR.result);
+            },
+            false
+          );
+          FR[func](file);
+        });
+      };
+      window.SFR = {
+        arrayBuffer: (file) => window._SFR("readAsArrayBuffer", file),
+        binaryString: (file) => window._SFR("readAsBinaryString", file),
+        dataURL: (file) => window._SFR("readAsDataURL", file),
+        text: (file) => window._SFR("readAsText", file),
+      };
+    </script>
+  </head>
+  <body>
+    <canvas id="worker"></canvas>
+    <div id="hello">
+      <h1>
+        Скинь <b id="pngImportState">spritesheet.png</b> и
+        <b id="jsonImportState">spritesheet.json</b>
+      </h1>
+      <h2>Или скинь картинки создания новой таблицы</h2>
+      <h3>А то и все сразу, чтобы загрузить и тут же добавить каринки</h3>
+      <h3>Ctrl+S - Чтобы скачать</h3>
+    </div>
+
+    <div id="wrapper">
+      <canvas id="canvas"></canvas>
+      <table>
+        <tbody id="table"></tbody>
+      </table>
+    </div>
+    <script>
+      const allowedTypes = ["image/png"];
+      const url = window.URL || window.webkitURL;
+      let imported = {
+        png: false,
+        json: false,
+      };
+      const defaultJson = {
+        frames: {},
+        meta: {
+          app: "https://spriter.iky.su",
+          version: "1.0",
+          image: "spritesheet.png",
+          format: "RGBA8888",
+          size: {
+            w: 0,
+            h: 0,
+          },
+          scale: "1",
+        },
+      };
+
+      const table = document.getElementById("table");
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      const wcanvas = document.getElementById("worker");
+      const wctx = wcanvas.getContext("2d");
+
+      function downloadPNG() {
+        var a = document.createElement("a");
+        a.setAttribute("href", canvas.toDataURL("image/png"));
+        a.setAttribute("download", "spritesheet.png");
+        a.style.display = "none";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      }
+
+      function downloadJSON() {
+        var a = document.createElement("a");
+        a.setAttribute(
+          "href",
+          "data:text/plain;charset=utf-8," +
+            encodeURIComponent(JSON.stringify(imported.json, null, 2))
+        );
+        a.setAttribute("download", "spritesheet.json");
+        a.style.display = "none";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      }
+
+      document.body.addEventListener("keydown", (ev) => {
+        if (ev.ctrlKey && ev.keyCode === 83) {
+          ev.preventDefault();
+          downloadJSON();
+          downloadPNG();
+        }
+      });
+
+      const images = {};
+
+      function delImage(name) {
+        console.info(name);
+        if (!name) return;
+        delete images[name];
+        render();
+      }
+
+      let maxSize = {
+        w: 0,
+        h: 0,
+      };
+      function render() {
+        const imagesList = Object.keys(images)
+          .map((e) => {
+            return {
+              name: e,
+              src: images[e],
+            };
+          })
+          .sort((a, b) => a.name.localeCompare(b.name));
+        const outputSize = Math.ceil(Math.sqrt(imagesList.length));
+        Object.values(images).forEach((img) => {
+          if (maxSize.h < img.height) maxSize.h = img.height;
+          if (maxSize.w < img.width) maxSize.w = img.width;
+        });
+        imported.json.frames = {};
+        imported.json.meta.size.w = outputSize * maxSize.w;
+        imported.json.meta.size.h = outputSize * maxSize.h;
+        ctx.canvas.width = imported.json.meta.size.w;
+        ctx.canvas.height = imported.json.meta.size.h;
+        ctx.clearRect(
+          0,
+          0,
+          imported.json.meta.size.w,
+          imported.json.meta.size.h
+        );
+        table.innerHTML = "";
+        for (let xCell = 0; xCell < outputSize; xCell++) {
+          let tr = `<tr style="height: ${maxSize.h}px; width: ${
+            maxSize.w * outputSize
+          }px">`;
+          for (let yCell = 0; yCell < outputSize; yCell++) {
+            const y = xCell * maxSize.w;
+            const x = yCell * maxSize.h;
+            const nowImage = imagesList[xCell * outputSize + yCell];
+            tr += `<td onclick="delImage('${nowImage?.name}')" style="width: ${maxSize.w}px"></td>`;
+            if (!nowImage) continue;
+
+            imported.json.frames[nowImage.name] = {
+              frame: {
+                x: x,
+                y: y,
+                w: nowImage.src.width,
+                h: nowImage.src.height,
+              },
+              rotated: false,
+              trimmed: false,
+              spriteSourceSize: {
+                x: 0,
+                y: 0,
+                w: nowImage.src.width,
+                h: nowImage.src.height,
+              },
+              sourceSize: {
+                w: nowImage.src.width,
+                h: nowImage.src.height,
+              },
+            };
+
+            ctx.drawImage(nowImage.src, x, y);
+          }
+          tr += "</tr>";
+          table.innerHTML = table.innerHTML + tr;
+        }
+      }
+
+      let dragNdropAvalible = true;
+      document.body.ondrop = async (ev) => {
+        ev.preventDefault();
+        if (!dragNdropAvalible) {
+          return Toastify({
+            text: "Падажи немного, дай загрузить предыдущие картинки",
+            duration: 1500,
+          }).showToast();
+        }
+        dragNdropAvalible = false;
+        let importing = [];
+        if (ev.dataTransfer.items) {
+          [...ev.dataTransfer.items].forEach((item, i) => {
+            if (item.kind === "file") {
+              const file = item.getAsFile();
+              importing.push(file);
+            }
+          });
+        } else {
+          [...ev.dataTransfer.files].forEach((file, i) => {
+            importing.push(file);
+          });
+        }
+
+        if (!imported.json || !imported.png) {
+          if (!imported.png) {
+            const pngFile = importing.findIndex(
+              (f) => f.name === "spritesheet.png"
+            );
+            if (pngFile != -1) {
+              document.getElementById("pngImportState").style.color = "green";
+              const blob = new Blob(
+                [await SFR.arrayBuffer(importing[pngFile])],
+                {
+                  type: importing[pngFile].type,
+                }
+              );
+              const img = new Image();
+              img.src = url.createObjectURL(blob);
+              imported.png = img;
+              importing.splice(pngFile, 1);
+            }
+          }
+
+          if (!imported.json) {
+            const jsonFile = importing.findIndex(
+              (f) => f.name === "spritesheet.json"
+            );
+            if (jsonFile != -1) {
+              document.getElementById("jsonImportState").style.color = "green";
+              imported.json = JSON.parse(await SFR.text(importing[jsonFile]));
+              importing.splice(jsonFile, 1);
+            }
+          }
+
+          if (imported.json && imported.png) {
+            console.info("Loading sheet");
+            await new Promise((res, rej) => {
+              imported.png.addEventListener("load", async () => {
+                const frameKeys = Object.keys(imported.json.frames);
+                for (let i = 0; i < frameKeys.length; i++) {
+                  const frame = imported.json.frames[frameKeys[i]].frame;
+
+                  wctx.canvas.width = frame.w;
+                  wctx.canvas.height = frame.h;
+                  wctx.clearRect(0, 0, frame.w, frame.h);
+                  wctx.drawImage(
+                    imported.png,
+                    frame.x,
+                    frame.y,
+                    frame.w,
+                    frame.h,
+
+                    0,
+                    0,
+                    frame.w,
+                    frame.h
+                  );
+                  await new Promise((resolve, reject) => {
+                    const tmp = new Image(frame.w, frame.h);
+                    tmp.addEventListener("load", () => {
+                      images[frameKeys[i]] = tmp;
+                      resolve();
+                    });
+                    tmp.src = wcanvas.toDataURL("image/png");
+                  });
+                }
+                res();
+              });
+            });
+            console.info(images);
+            render();
+          } else {
+            if (
+              importing.filter(
+                (f) =>
+                  allowedTypes.includes(f.type) &&
+                  /^[a-zA-Z\_][0-9a-zA-Z\_\-]+$/gm.test(f.name.split(".")[0])
+              ).length
+            ) {
+              document.getElementById("jsonImportState").style.color = "green";
+              document.getElementById("pngImportState").style.color = "green";
+              imported.json = defaultJson;
+              imported.png = new Image(
+                defaultJson.meta.size.w,
+                defaultJson.meta.size.h
+              );
+              Toastify({
+                text: "Used default sheet",
+                duration: 1500,
+              }).showToast();
+            } else {
+              console.info("Not created");
+              dragNdropAvalible = true;
+              return;
+            }
+          }
+
+          console.info(imported);
+        }
+
+        importing = importing.filter((f) => {
+          const name = f.name.split(".")[0];
+          if (allowedTypes.indexOf(f.type) === -1) {
+            Toastify({
+              text: `Bad file type (not loaded): ${name}`,
+              style: {
+                background: "#ff0000",
+              },
+              duration: 5000,
+            }).showToast();
+            return false;
+          }
+          if (!/^[a-zA-Z\_][0-9a-zA-Z\_\-]+$/gm.test(name)) {
+            Toastify({
+              text: `Bad file name (not loaded): ${name}`,
+              style: {
+                background: "#ff0000",
+              },
+              duration: 5000,
+            }).showToast();
+            return false;
+          }
+          if (images[name]) {
+            Toastify({
+              text: `Sprite with that name already exists (not loaded): ${name}`,
+              style: {
+                background: "#ff0000",
+              },
+              duration: 5000,
+            }).showToast();
+            return false;
+          }
+
+          images[name] = "loading";
+          return true;
+        });
+
+        console.info("Importing:", importing);
+        if (importing.length === 0) {
+          dragNdropAvalible = true;
+          return;
+        }
+
+        // Loading images
+        await Promise.all(
+          importing.map(
+            (image) =>
+              new Promise(async (resolve, reject) => {
+                const name = image.name.split(".")[0];
+                console.info("Loading:", name);
+                const blob = new Blob([await SFR.arrayBuffer(image)], {
+                  type: image.type,
+                });
+                const img = new Image();
+                img.onload = () => {
+                  images[name] = img;
+                  resolve();
+                };
+                img.src = url.createObjectURL(blob);
+                return;
+              })
+          )
+        );
+
+        Toastify({
+          text: `All sprites loaded`,
+          duration: 1500,
+        }).showToast();
+
+        dragNdropAvalible = true;
+
+        render();
+      };
+
+      document.body.ondragover = (e) => e.preventDefault();
+    </script>
+  </body>
+</html>
