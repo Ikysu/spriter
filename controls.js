@@ -42,6 +42,7 @@ document.body.addEventListener("keydown", (ev) => {
       exportFiles();
     }
     if (ev.keyCode === 67) {
+      ev.preventDefault();
       navigator.clipboard.writeText(files[selectedFile].name);
       selectedFileElement.innerText =
         selectedFileElement.innerText + " (Copied!)";
