@@ -45,8 +45,6 @@ document.body.addEventListener("keydown", (ev) => {
       ev.preventDefault();
       if(files[selectedFile]?.name) {
         alert(files[selectedFile]?.name);
-        selectedFileElement.innerText =
-          selectedFileElement.innerText + " (Copied!)";
       }
       
     }
