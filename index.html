@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simple Spritesheet Editor</title>
-    <link rel="stylesheet" href="styles.css">
     <script src="sfr.js"></script>
     <script src="magic.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.12.0/toastify.min.js"></script>
@@ -20,39 +19,45 @@
     ></script>
   </head>
   <body>
-    <h2 id="hello">
-      Drop <b>spritesheet.json</b> and <b>spritesheet.png</b> OR
-      <b>sprites</b> (png's)
-    </h2>
-    <div id="panel">
-      <div id="multiplier">
-        <h4>== Multiplier ==</h4>
-        <div>
-          Width:
-          <input type="range" id="multi-w" min="1" max="10" value="1" /><b
-            id="multi-w-value"
-            >1</b
-          >
+    <div id="top">
+      <h2 id="hello">
+        Drop <b>spritesheet.json</b> and <b>spritesheet.png</b> OR
+        <b>sprites</b> (png's)
+      </h2>
+      <div id="panel">
+        <div id="multiplier">
+          <h4>== Multiplier ==</h4>
+          <div>
+            Width:
+            <input type="range" id="multi-w" min="1" max="10" value="1" /><b
+              id="multi-w-value"
+              >1</b
+            >
+          </div>
+          <div>
+            Height:
+            <input type="range" id="multi-h" min="1" max="10" value="1" /><b
+              id="multi-h-value"
+              >1</b
+            >
+          </div>
         </div>
-        <div>
-          Height:
-          <input type="range" id="multi-h" min="1" max="10" value="1" /><b
-            id="multi-h-value"
-            >1</b
-          >
+        <div id="controls">
+          <button id="btn-save">Save table (Ctrl+S)</button>
+          <button id="btn-export">Export sprites (Ctrl+E)</button>
         </div>
       </div>
-      <div id="controls">
-        <button id="btn-save">Save table (Ctrl+S)</button>
-        <button id="btn-export">Export sprites (Ctrl+E)</button>
-      </div>
+      <h3 id="selected-file">Selected (Ctrl+C to Copy): none</h3>
     </div>
-    <h3 id="selected-file">Selected: none</h3>
 
     <div id="container">
       <canvas id="canvas" width="1" height="1"></canvas>
     </div>
 
+    <script>
+      document.getElementById("container").style.paddingTop =
+        document.getElementById("top").clientHeight + "px";
+    </script>
     <script src="utils.js"></script>
     <script src="controls.js"></script>
     <script src="multiplier.js"></script>

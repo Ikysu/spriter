@@ -97,7 +97,7 @@ const findSelection = () => {
     }
     selectedFile = f;
     selection(files[selectedFile], false);
-    selectedFileElement.innerText = `Selected: ${files[selectedFile].name}`;
+    selectedFileElement.innerText = `Selected (Ctrl+C to Copy): ${files[selectedFile].name}`;
   }
 };
 
