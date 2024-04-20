@@ -1,4 +1,5 @@
 const saveTable = () => {
+  render()
   const a = document.createElement("a");
   a.style.display = "none";
   document.body.appendChild(a);
@@ -13,6 +14,7 @@ const saveTable = () => {
   a.setAttribute("download", "spritesheet.json");
   a.click();
   a.remove();
+  findSelection()
 };
 document.getElementById("btn-save").addEventListener("click", saveTable);
 
