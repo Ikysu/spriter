@@ -43,9 +43,12 @@ document.body.addEventListener("keydown", (ev) => {
     }
     if (ev.keyCode === 67) {
       ev.preventDefault();
-      navigator.clipboard.writeText(files[selectedFile].name);
-      selectedFileElement.innerText =
-        selectedFileElement.innerText + " (Copied!)";
+      if(files[selectedFile]?.name) {
+        alert(files[selectedFile]?.name);
+        selectedFileElement.innerText =
+          selectedFileElement.innerText + " (Copied!)";
+      }
+      
     }
   }
 });
