@@ -1,0 +1,47 @@
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  color: white;
+}
+#hello {
+  padding: 1em;
+}
+#hello > b {
+  color: red;
+}
+body {
+  margin: 0;
+  background-color: black;
+  height: 100vh;
+}
+#multiplier {
+  color: white;
+  padding: 0 1em;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+#multiplier > h4 {
+  text-align: center;
+}
+#container {
+  width: -webkit-fill-available;
+  padding: 1em;
+}
+#container > canvas {
+  max-width: -webkit-fill-available;
+}
+#panel {
+  display: flex;
+}
+#controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#selected-file {
+  padding: 1em;
+  color: white;
+}
