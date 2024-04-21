@@ -11,7 +11,8 @@ const generateList = () => {
         })
         tr.dataset.file = file.name;
         tr.addEventListener("dblclick", ()=>{
-            const newname = prompt("New name")
+            const newname = prompt("New name", file.name)
+            if(!newname) return
             const alreadyExists = files.findIndex(f=>f.name===newname)
             if(alreadyExists !== -1) return alert("Already exists!")
             file.name = newname;
