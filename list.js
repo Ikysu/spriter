@@ -3,7 +3,7 @@ const generateList = () => {
     list.innerHTML=""
     files.forEach((file, f) => {
         const tr = document.createElement("tr")
-        tr.addEventListener("mousemove", ()=>{            
+        tr.addEventListener("mousemove", ()=>{
             if (f !== -1 && selectedFile !== f) {
                 if (selectedFile !== -1) {
                   selection(files[selectedFile], true);
@@ -13,6 +13,7 @@ const generateList = () => {
                 selectedFileElement.innerText = `Selected (Ctrl+C to Copy): ${files[selectedFile].name}`;
             }
         })
+        tr.dataset.file = file.name;
         tr.innerHTML=`<td>${file.name}</td>`
         list.appendChild(tr)
     });

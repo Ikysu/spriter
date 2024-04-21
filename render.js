@@ -60,11 +60,13 @@ let selectedFile = -1,
   mouseX = -1,
   mouseY = -1;
 
-const selection = ({ file, frame: { x, y, w, h } }, remove = false) => {
+const selection = ({ file, frame: { x, y, w, h }, name }, remove = false) => {
   if (remove) {
+    list.querySelector(`tr[data-file="${name}"]`).style.backgroundColor=""
     ctx.clearRect(x, y, w, h);
     ctx.drawImage(file, 0, 0, w, h, x, y, w, h);
   } else {
+    list.querySelector(`tr[data-file="${name}"]`).style.backgroundColor="red"
     selectedView.width = w;
     selectedView.height = h;
     selectedViewCtx.clearRect(0, 0, w, h);
