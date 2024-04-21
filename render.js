@@ -55,7 +55,6 @@ const selection = (f) => {
   ctx.moveTo(x + w - padding, y + padding);
   ctx.lineTo(x + padding, y + h - padding);
   ctx.stroke();
-  generateList();
 };
 
 const findSelection = () => {

@@ -33,4 +33,6 @@ const sorting = () => {
   spritesheet.meta.size.h = maxHeight;
 
   sorted = s;
+  render();
+  generateList();
 }

@@ -54,9 +54,7 @@ document.body.addEventListener("keydown", (ev) => {
       if (selectedFile === -1) return;
       files.splice(selectedFile, 1);
       selectedFile = -1;
-      sorting()
-      render();
-      generateList();
+      sorting();
       findSelection();
     }
   }

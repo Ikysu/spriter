@@ -102,8 +102,6 @@ document.body.ondrop = async (ev) => {
       })
   );
   sorting();
-  render();
-  generateList();
 
   loading = false;
   hello.innerHTML =
