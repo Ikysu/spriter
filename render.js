@@ -36,7 +36,9 @@ const selection = (f) => {
   render()
   const { file, frame: { x, y, w, h }, name } = f;
   [...list.children].map(e=>e.style.backgroundColor="")
-  list.querySelector(`tr[data-file="${name}"]`).style.backgroundColor="red"
+  const element = list.querySelector(`tr[data-file="${name}"]`)
+  element.style.backgroundColor="red"
+  list.scrollTo(0,element.offsetTop)
   selectedView.width = w;
   selectedView.height = h;
   selectedViewCtx.clearRect(0, 0, w, h);
