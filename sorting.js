@@ -41,11 +41,11 @@ const preSorting = (mw,mh) => {
 const sorting = () => {
   delBlock=true
 
-  let goodest = {mw:1,mh:1,good:1};
+  let goodest = {mw:1,mh:1,good:0};
   for (let mw=1;mw<=10;mw++) {
     for (let mh=1;mh<=10;mh++) {
       const pre = preSorting(mw,mh);
-      if(goodest.good<pre.good) goodest = {mw,mh,good:pre.good,s:pre.sorted}
+      if(pre && goodest.good<pre.good) goodest = {mw,mh,good:pre.good,s:pre.sorted}
       console.info(mw,mh,pre)
     }
   }
