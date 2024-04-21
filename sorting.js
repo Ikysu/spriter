@@ -50,14 +50,15 @@ const sorting = () => {
 
   let goodest = {mw:1,mh:1,good:0};
   if(autoGoodest.checked) {
-    const pre = preSorting(spritesheet.meta.multiplier.w,spritesheet.meta.multiplier.h);
-    if(pre && goodest.good<pre.good) goodest = pre
-    // for (let mw=1;mw<=10;mw++) {
-    //   for (let mh=1;mh<=10;mh++) {
-    //     const pre = preSorting(mw,mh);
-    //     if(pre && goodest.good<pre.good) goodest = pre
-    //   }
-    // }
+    for (let mw=1;mw<=10;mw++) {
+      for (let mh=1;mh<=10;mh++) {
+        const pre = preSorting(mw,mh);
+        if(pre && goodest.good<pre.good) {
+          console.info("Good", pre)
+          goodest = pre
+        }
+      }
+    }
   }else{
     const pre = preSorting(spritesheet.meta.multiplier.w,spritesheet.meta.multiplier.h);
     if(!pre) {
