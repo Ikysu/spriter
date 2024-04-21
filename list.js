@@ -12,7 +12,7 @@ const generateList = () => {
         tr.dataset.file = file.name;
         const td = document.createElement("td")
         td.innerText=file.name;
-        td.contenteditable=true;
+        td.contentEditable=true;
         td.addEventListener("change", ()=>{
             const alreadyExists = files.findIndex(f=>f.name===td.innerText)
             if(alreadyExists !== -1) {
