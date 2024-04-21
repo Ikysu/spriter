@@ -65,6 +65,10 @@ const selection = ({ file, frame: { x, y, w, h } }, remove = false) => {
     ctx.clearRect(x, y, w, h);
     ctx.drawImage(file, 0, 0, w, h, x, y, w, h);
   } else {
+    selectedView.width = w;
+    selectedView.height = h;
+    selectedViewCtx.clearRect(0, 0, w, h);
+    selectedViewCtx.drawImage(file, 0, 0, w, h, x, y, w, h);
     ctx.drawImage(file, 0, 0, w, h, x, y, w, h);
     const padding = 5;
     ctx.lineWidth = 10;

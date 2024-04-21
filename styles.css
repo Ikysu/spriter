@@ -50,3 +50,7 @@ body {
   position: fixed;
   background-color: black;
 }
+#selected-view {
+  max-height: 60px;
+  height: 100%;
+}

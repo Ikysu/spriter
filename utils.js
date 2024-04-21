@@ -21,3 +21,7 @@ const files = [];
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+
+const selectedView = document.getElementById("selected-view")
+const selectedViewCtx = selectedView.getContext("2d");
+selectedView.height = selectedView.clientHeight-5
