@@ -39,7 +39,7 @@ body {
 #controls {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 #info {
   padding: 1em;
