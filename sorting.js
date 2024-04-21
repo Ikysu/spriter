@@ -70,7 +70,7 @@ const sorting = () => {
     goodest = pre
   }
 
-  const { s, maxWidth, maxHeight, mw, mh } = goodest
+  const { s, maxWidth, maxHeight, mw, mh } = preSorting(goodest.mw,goodest.mh)
 
   console.info(autoGoodest.checked, s)
 
