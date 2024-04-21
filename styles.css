@@ -62,8 +62,9 @@ body {
   color: white;
   max-width: 50%;
   min-width: max-content;
-  height: fit-content;
+  height: auto;
   display: block;
+  overflow-y: scroll;
 }
 #list > tr {
   display: block;
