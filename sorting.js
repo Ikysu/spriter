@@ -31,6 +31,8 @@ const preSorting = (mw,mh) => {
       maxHeight = s[i].frame.y + s[i].frame.h;
   }
 
+  if(s.length !== files.length) return
+
   return {
     mw,
     mh,
