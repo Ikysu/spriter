@@ -1,19 +1,20 @@
-document.getElementById("multi-w").value = spritesheet.meta.multiplier.w;
-document.getElementById("multi-w-value").innerText =
-  spritesheet.meta.multiplier.w;
-document.getElementById("multi-h").value = spritesheet.meta.multiplier.h;
-document.getElementById("multi-h-value").innerText =
-  spritesheet.meta.multiplier.h;
-document.getElementById("multi-w").addEventListener("input", () => {
-  spritesheet.meta.multiplier.w = +document.getElementById("multi-w").value;
-  document.getElementById("multi-w-value").innerText =
-    spritesheet.meta.multiplier.w;
+const multiW = document.getElementById("multi-w"),
+      multiWvalue = document.getElementById("multi-w-value"),
+      multiH = document.getElementById("multi-h"),
+      multiHvalue = document.getElementById("multi-h-value");
+
+multiW.value = spritesheet.meta.multiplier.w;
+multiWvalue.innerText = spritesheet.meta.multiplier.w;
+multiH.value = spritesheet.meta.multiplier.h;
+multiHvalue.innerText = spritesheet.meta.multiplier.h;
+multiW.addEventListener("input", () => {
+  spritesheet.meta.multiplier.w = +multiW.value;
+  multiWvalue.innerText = spritesheet.meta.multiplier.w;
   sorting();
 });
-document.getElementById("multi-h").addEventListener("input", () => {
-  spritesheet.meta.multiplier.h = +document.getElementById("multi-h").value;
-  document.getElementById("multi-h-value").innerText =
-    spritesheet.meta.multiplier.h;
+multiH.addEventListener("input", () => {
+  spritesheet.meta.multiplier.h = +multiH.value;
+  multiHvalue.innerText = spritesheet.meta.multiplier.h;
   sorting();
 });
 
