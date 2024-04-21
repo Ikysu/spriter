@@ -62,7 +62,7 @@ const sorting = () => {
     goodest = pre
   }
 
-  const { s, maxWidth, maxHeight, mw, mh } = goodest.pre
+  const { s, maxWidth, maxHeight, mw, mh } = goodest
 
   canvas.width = maxWidth;
   canvas.height = maxHeight;
