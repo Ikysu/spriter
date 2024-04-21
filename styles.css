@@ -67,7 +67,8 @@ body {
   overflow-y: scroll;
 }
 #list > tr {
-  display: block;
+  display: flex;
+  justify-content: space-between;
 }
 #list > tr > td {
   padding: 0.2em;

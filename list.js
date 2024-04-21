@@ -26,7 +26,7 @@ const generateList = () => {
             file.name = newname;
             files[f].name = newname
             tr.dataset.file = newname;
-            tr.innerHTML=`<td>${file.name}</td>`
+            tdName.innerText = newname;
             if(selectedFile === f) selection(files[f]);
         })
         tr.appendChild(tdEdit)
