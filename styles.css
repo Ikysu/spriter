@@ -62,9 +62,15 @@ body {
   color: white;
   width: 48%;
   height: fit-content;
+  display: block;
+}
+#list > tr {
+  display: block;
 }
 #list > tr > td {
   padding: 0.2em;
+  display: block;
+  word-break: break-all;
 }
 
 #canvas-block {
