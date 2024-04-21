@@ -50,6 +50,9 @@ body {
   position: fixed;
   background-color: black;
 }
+#selected-container {
+  padding: 0 1em;
+}
 #selected-view {
   max-height: 60px;
   height: 100%;
