@@ -41,7 +41,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
-#selected-file {
+#info {
   padding: 1em;
   color: white;
 }
