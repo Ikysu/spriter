@@ -60,13 +60,16 @@ body {
 
 #list {
   color: white;
-  width: 45%;
+  width: 48%;
   height: fit-content;
 }
 #list > tr > td {
   padding: 0.2em;
 }
 
+#canvas-block {
+  max-width: 50%;
+}
 #canvas {
   max-width: -webkit-fill-available;
   max-height: -webkit-fill-available;
