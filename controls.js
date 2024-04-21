@@ -56,7 +56,6 @@ document.body.addEventListener("keydown", (ev) => {
       selectedFile = -1;
       render();
       findSelection();
-      generateList();
     }
   }
 });

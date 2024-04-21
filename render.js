@@ -61,34 +61,29 @@ let selectedFile = -1,
   mouseY = -1;
 
 const padding = 8;
-const selection = (f, remove = false) => {
-  if(!f)return;
-  const { file, frame: { x, y, w, h }, name } = f
-  if (remove) {
-    list.querySelector(`tr[data-file="${name}"]`).style.backgroundColor=""
-    ctx.clearRect(x, y, w, h);
-    ctx.drawImage(file, 0, 0, w, h, x, y, w, h);
-  } else {
-    list.querySelector(`tr[data-file="${name}"]`).style.backgroundColor="red"
-    selectedView.width = w;
-    selectedView.height = h;
-    selectedViewCtx.clearRect(0, 0, w, h);
-    selectedViewCtx.drawImage(file, 0, 0, w, h);
-    ctx.drawImage(file, 0, 0, w, h, x, y, w, h);
-    ctx.lineWidth = 10;
-    ctx.strokeStyle = "red";
-    ctx.strokeRect(x + padding, y + padding, w - padding * 2, h - padding * 2);
+const selection = (f) => {
+  if(!f) return;
+  const { file, frame: { x, y, w, h }, name } = f;
+  [...list.children].map(e=>e.style.backgroundColor="")
+  list.querySelector(`tr[data-file="${name}"]`).style.backgroundColor="red"
+  selectedView.width = w;
+  selectedView.height = h;
+  selectedViewCtx.clearRect(0, 0, w, h);
+  selectedViewCtx.drawImage(file, 0, 0, w, h);
+  ctx.drawImage(file, 0, 0, w, h, x, y, w, h);
+  ctx.lineWidth = 10;
+  ctx.strokeStyle = "red";
+  ctx.strokeRect(x + padding, y + padding, w - padding * 2, h - padding * 2);
 
-    ctx.beginPath();
+  ctx.beginPath();
 
-    ctx.moveTo(x + padding, y + padding);
-    ctx.lineTo(x + w - padding, y + h - padding);
-    ctx.stroke();
+  ctx.moveTo(x + padding, y + padding);
+  ctx.lineTo(x + w - padding, y + h - padding);
+  ctx.stroke();
 
-    ctx.moveTo(x + w - padding, y + padding);
-    ctx.lineTo(x + padding, y + h - padding);
-    ctx.stroke();
-  }
+  ctx.moveTo(x + w - padding, y + padding);
+  ctx.lineTo(x + padding, y + h - padding);
+  ctx.stroke();
 };
 
 const findSelection = () => {
@@ -100,13 +95,12 @@ const findSelection = () => {
       mouseY * renderAspect <= y + h
   );
   if (f !== -1 && selectedFile !== f) {
-    if (selectedFile !== -1 && files[selectedFile]) {
-      selection(files[selectedFile], true);
-    }
     selectedFile = f;
     if(!files[selectedFile]) return
+    render()
     selection(files[selectedFile], false);
     selectedFileElement.innerText = `Selected: ${files[selectedFile].name}`;
+    generateList();
   }
 };
 
