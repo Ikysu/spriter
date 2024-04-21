@@ -1,5 +1,6 @@
 let sorted = [];
 const sorting = () => {
+  delBlock=true
   const s = files.sort((a, b) => a.frame.h - b.frame.h).reverse();
 
   const cW =
@@ -35,4 +36,5 @@ const sorting = () => {
   sorted = s;
   render();
   generateList();
+  delBlock=false;
 }
