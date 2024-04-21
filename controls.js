@@ -54,6 +54,8 @@ document.body.addEventListener("keydown", (ev) => {
       ev.preventDefault();
       if(delBlock) return;
       if (selectedFile === -1) return;
+      selectedViewCtx.clearRect(0, 0, selectedView.width, selectedView.height);
+      selectedFileElement.innerText = `Selected: none`
       files.splice(selectedFile, 1);
       selectedFile = -1;
       sorting();
