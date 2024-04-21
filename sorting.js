@@ -45,7 +45,6 @@ const preSorting = (mw,mh) => {
 
 
 const sorting = () => {
-  console.info("try sort")
   delBlock=true
 
   let goodest = {mw:1,mh:1,good:0};
@@ -70,8 +69,6 @@ const sorting = () => {
   }
 
   const { s, maxWidth, maxHeight, mw, mh } = goodest
-
-  console.info(autoGoodest.checked, s)
 
   canvas.width = maxWidth;
   canvas.height = maxHeight;
