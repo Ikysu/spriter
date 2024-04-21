@@ -10,21 +10,15 @@ const generateList = () => {
             }
         })
         tr.dataset.file = file.name;
-        const td = document.createElement("td")
-        td.innerText=file.name;
-        td.contentEditable=true;
-        td.addEventListener("input", ()=>{
-            const alreadyExists = files.findIndex(f=>f.name===td.innerText)
-            if(alreadyExists !== -1) {
-                alert("Already exists!")
-                td.innerText = file.name;
-                return
-            }
-            files[alreadyExists].name = td.innerText
-            tr.dataset.file = td.innerText;
+        tr.addEventListener("dblclick", ()=>{
+            const newname = prompt("New name")
+            const alreadyExists = files.findIndex(f=>f.name===newname)
+            if(alreadyExists !== -1) return alert("Already exists!")
+            files[alreadyExists].name = newname
+            tr.dataset.file = newname;
             if(selectedFile === alreadyExists) selection(files[selectedFile]);
         })
-        tr.appendChild(td)
+        tr.innerHTML=`<td>${file.name}</td>`
         list.appendChild(tr)
     });
 }
