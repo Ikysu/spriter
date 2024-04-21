@@ -32,6 +32,8 @@ const preSorting = (mw,mh) => {
   }
 
   return {
+    mw,
+    mh,
     good: usedS / (maxWidth*maxHeight),
     maxWidth,
     maxHeight,
@@ -43,26 +45,24 @@ const preSorting = (mw,mh) => {
 const sorting = () => {
   delBlock=true
 
-  let goodest = {mw:1,mh:1,pre:{good:0}};
+  let goodest = {mw:1,mh:1,good:0};
   if(autoGoodest.checked) {
-    let goodest = {mw:1,mh:1,pre:{good:0}};
     for (let mw=1;mw<=10;mw++) {
       for (let mh=1;mh<=10;mh++) {
         const pre = preSorting(mw,mh);
-        if(pre && goodest.pre.good<pre.good) goodest = {mw,mh,pre}
-        console.info(mw,mh,pre)
+        if(pre && goodest.good<pre.good) goodest = pre
       }
     }
   }else{
-    const pre = preSorting(mw,mh);
+    const pre = preSorting(spritesheet.meta.multiplier.w,spritesheet.meta.multiplier.h);
     if(!pre) {
       decreaseMultiplier()
       return sorting()
     }
-    goodest = {mw,mh,pre}
+    goodest = pre
   }
 
-  const { s, maxWidth, maxHeight } = goodest.pre
+  const { s, maxWidth, maxHeight, mw, mh } = goodest.pre
 
   canvas.width = maxWidth;
   canvas.height = maxHeight;
@@ -71,6 +71,9 @@ const sorting = () => {
 
   spritesheet.meta.size.w = maxWidth;
   spritesheet.meta.size.h = maxHeight;
+
+  spritesheet.meta.multiplier.w = mw
+  spritesheet.meta.multiplier.h = mh
 
   sorted = s;
   render();
