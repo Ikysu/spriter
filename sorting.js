@@ -37,7 +37,7 @@ const preSorting = (mw,mh) => {
     good: usedS / (maxWidth*maxHeight),
     maxWidth,
     maxHeight,
-    sorted: s
+    s
   }
 }
 
