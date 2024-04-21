@@ -76,6 +76,12 @@ body {
   word-break: break-all;
   padding-right: 1em;
 }
+#list > tr > td:first-child {
+  width: -webkit-fill-available;
+}
+#list > tr > td:last-child {
+  background-color: darkred;
+}
 
 #canvas-block {
   max-width: 50%;
