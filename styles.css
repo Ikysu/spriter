@@ -54,7 +54,7 @@ body {
   padding: 0 1em;
 }
 #selected-view {
-  max-height: 60px;
+  max-height: 80px;
   height: 100%;
 }
 
