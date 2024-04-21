@@ -33,9 +33,6 @@ body {
   justify-content: space-between;
   max-height: -webkit-fill-available;
 }
-#container > canvas {
-  max-width: 50%;
-}
 #panel {
   display: flex;
 }
@@ -68,4 +65,9 @@ body {
 }
 #list > tr > td {
   padding: 0.2em;
+}
+
+#canvas {
+  max-width: -webkit-fill-available;
+  max-height: -webkit-fill-available;
 }
