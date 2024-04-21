@@ -45,16 +45,19 @@ const preSorting = (mw,mh) => {
 
 
 const sorting = () => {
+  console.info("try sort")
   delBlock=true
 
   let goodest = {mw:1,mh:1,good:0};
   if(autoGoodest.checked) {
-    for (let mw=1;mw<=10;mw++) {
-      for (let mh=1;mh<=10;mh++) {
-        const pre = preSorting(mw,mh);
-        if(pre && goodest.good<pre.good) goodest = pre
-      }
-    }
+    const pre = preSorting(spritesheet.meta.multiplier.w,spritesheet.meta.multiplier.h);
+    if(pre && goodest.good<pre.good) goodest = pre
+    // for (let mw=1;mw<=10;mw++) {
+    //   for (let mh=1;mh<=10;mh++) {
+    //     const pre = preSorting(mw,mh);
+    //     if(pre && goodest.good<pre.good) goodest = pre
+    //   }
+    // }
   }else{
     const pre = preSorting(spritesheet.meta.multiplier.w,spritesheet.meta.multiplier.h);
     if(!pre) {

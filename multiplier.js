@@ -23,7 +23,8 @@ const decreaseMultiplier = () => {
   const what = spritesheet.meta.multiplier.w >= spritesheet.meta.multiplier.h ? "w" : "h"
   if(what===1) throw new Error("Fuck")
   spritesheet.meta.multiplier[what]--;
-  document.getElementById(`multi-${what}`).value = spritesheet.meta.multiplier[what];
-  document.getElementById(`multi-${what}-value`).innerText =
-    spritesheet.meta.multiplier[what];
+  multiW.value = spritesheet.meta.multiplier.w;
+  multiWvalue.innerText = spritesheet.meta.multiplier.w;
+  multiH.value = spritesheet.meta.multiplier.h;
+  multiHvalue.innerText = spritesheet.meta.multiplier.h;
 }
