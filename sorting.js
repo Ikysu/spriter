@@ -65,6 +65,7 @@ const sorting = () => {
       decreaseMultiplier()
       return sorting()
     }
+    console.info("Good", pre)
     goodest = pre
   }
 
