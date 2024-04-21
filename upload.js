@@ -101,7 +101,7 @@ document.body.ondrop = async (ev) => {
         });
       })
   );
-
+  sorting();
   render();
   generateList();
 
