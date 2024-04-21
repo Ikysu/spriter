@@ -24,7 +24,7 @@ const generateList = () => {
             tr.dataset.file = td.innerText;
             if(selectedFile === alreadyExists) selection(files[selectedFile]);
         })
-        tr.innerHTML=`<td>${file.name}</td>`
+        tr.appendChild(td)
         list.appendChild(tr)
     });
 }
