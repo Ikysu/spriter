@@ -74,6 +74,7 @@ body {
   padding: 0.2em;
   display: block;
   word-break: break-all;
+  padding-right: 1em;
 }
 
 #canvas-block {

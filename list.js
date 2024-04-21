@@ -31,6 +31,20 @@ const generateList = () => {
         })
         tr.appendChild(tdEdit)
 
+        const tdDel = document.createElement("td")
+        tdDel.innerText="D"
+        tdDel.style.cursor="pointer";
+        tdDel.addEventListener("click", ()=>{
+            if(f !== selectedFile) return
+            selectedViewCtx.clearRect(0, 0, selectedView.width, selectedView.height);
+            selectedFileElement.innerText = `Selected: none`
+            files.splice(selectedFile, 1);
+            selectedFile = -1;
+            sorting();
+            findSelection();
+        })
+        tr.appendChild(tdDel)
+
         list.appendChild(tr)
     });
 }
