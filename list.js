@@ -4,9 +4,8 @@ const generateList = () => {
     files.forEach((file, f) => {
         const tr = document.createElement("tr")
         tr.addEventListener("mousemove", ()=>{
-            if (f !== -1 && selectedFile !== f) {
+            if (f !== -1 && files[f] && selectedFile !== f) {
                 selectedFile = f;
-                if(!files[selectedFile]) return
                 selection(files[selectedFile], false);
                 selectedFileElement.innerText = `Selected: ${files[selectedFile].name}`;
             }

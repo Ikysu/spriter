@@ -1,3 +1,15 @@
+const exportOne = () => {
+  if(selectedFile === -1 || !files[selectedFile]) return;
+  const a = document.createElement("a");
+  a.style.display = "none";
+  document.body.appendChild(a);
+  a.setAttribute("href", url.createObjectURL(files[selectedFile].blob));
+  a.setAttribute("download", files[selectedFile].name);
+  a.click();
+  a.remove();
+};
+document.getElementById("btn-export-one").addEventListener("click", saveTable);
+
 const saveTable = () => {
   render()
   const a = document.createElement("a");
@@ -49,7 +61,7 @@ document.body.addEventListener("keydown", (ev) => {
       case 68:
         ev.preventDefault();
         if(delBlock) return;
-        if (selectedFile === -1) return;
+        if (selectedFile === -1 || !files[selectedFile]) return;
         selectedViewCtx.clearRect(0, 0, selectedView.width, selectedView.height);
         selectedFileElement.innerText = `Selected: none`
         files.splice(selectedFile, 1);
