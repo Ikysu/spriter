@@ -10,7 +10,15 @@ const generateList = () => {
             }
         })
         tr.dataset.file = file.name;
-        tr.addEventListener("dblclick", ()=>{
+
+        const tdName = document.createElement("td")
+        tdName.innerText=file.name
+        tr.appendChild(tdName)
+
+        const tdEdit = document.createElement("td")
+        tdEdit.innerText="E"
+        tdEdit.style.cursor="pointer";
+        tdEdit.addEventListener("click", ()=>{
             const newname = prompt("New name", file.name)
             if(!newname) return
             const alreadyExists = files.findIndex(f=>f.name===newname)
@@ -21,7 +29,8 @@ const generateList = () => {
             tr.innerHTML=`<td>${file.name}</td>`
             if(selectedFile === f) selection(files[f]);
         })
-        tr.innerHTML=`<td>${file.name}</td>`
+        tr.appendChild(tdEdit)
+
         list.appendChild(tr)
     });
 }
