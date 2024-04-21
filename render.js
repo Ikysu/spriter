@@ -117,6 +117,7 @@ canvas.addEventListener("click", (e) => {
   files.splice(selectedFile, 1);
   selectedFile = -1;
   render();
+  generateList();
   findSelection();
 });
 
