@@ -16,3 +16,13 @@ document.getElementById("multi-h").addEventListener("input", () => {
     spritesheet.meta.multiplier.h;
   sorting();
 });
+
+
+const decreaseMultiplier = () => {
+  const what = spritesheet.meta.multiplier.w >= spritesheet.meta.multiplier.h ? "w" : "h"
+  if(what===1) return console.error("Fuck")
+  spritesheet.meta.multiplier[what]--;
+  document.getElementById(`multi-${what}`).value = spritesheet.meta.multiplier[what];
+  document.getElementById(`multi-${what}-value`).innerText =
+    spritesheet.meta.multiplier[what];
+}

@@ -1,11 +1,6 @@
 let sorted = [];
 const sorting = () => {
   delBlock=true
-  try {
-    
-  } catch (error) {
-    
-  }
   const s = files.sort((a, b) => a.frame.h - b.frame.h).reverse();
 
   const cW =
@@ -21,9 +16,11 @@ const sorting = () => {
 
   for (let i = 0; i < s.length; i++) {
     const rect = new Rect(0, 0, s[i].frame.w, s[i].frame.h);
-    console.info(rect)
     const ir = start_node.insert_rect(rect);
-    console.info(ir)
+    if(!ir) {
+      decreaseMultiplier()
+      return sorting()
+    }
     const node = ir.rect;
     s[i].frame.x = node.x;
     s[i].frame.y = node.y;
