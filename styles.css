@@ -60,7 +60,8 @@ body {
 
 #list {
   color: white;
-  width: 48%;
+  max-width: 50%;
+  min-width: max-content;
   height: fit-content;
   display: block;
 }
