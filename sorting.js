@@ -62,6 +62,7 @@ const sorting = () => {
   }else{
     const pre = preSorting(spritesheet.meta.multiplier.w,spritesheet.meta.multiplier.h);
     if(!pre) {
+      console.info("Bad! Decrease...")
       decreaseMultiplier()
       return sorting()
     }
