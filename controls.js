@@ -56,8 +56,8 @@ document.body.addEventListener("keydown", (ev) => {
       selectedFile = -1;
       sorting()
       render();
-      findSelection();
       generateList();
+      findSelection();
     }
   }
 });

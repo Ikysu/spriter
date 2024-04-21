@@ -33,6 +33,7 @@ let selectedFile = -1,
 const padding = 8;
 const selection = (f) => {
   if(!f) return;
+  render()
   const { file, frame: { x, y, w, h }, name } = f;
   [...list.children].map(e=>e.style.backgroundColor="")
   list.querySelector(`tr[data-file="${name}"]`).style.backgroundColor="red"
@@ -54,6 +55,7 @@ const selection = (f) => {
   ctx.moveTo(x + w - padding, y + padding);
   ctx.lineTo(x + padding, y + h - padding);
   ctx.stroke();
+  generateList();
 };
 
 const findSelection = () => {
@@ -67,10 +69,8 @@ const findSelection = () => {
   if (f !== -1 && selectedFile !== f) {
     selectedFile = f;
     if(!files[selectedFile]) return
-    render()
     selection(files[selectedFile], false);
     selectedFileElement.innerText = `Selected: ${files[selectedFile].name}`;
-    generateList();
   }
 };
 

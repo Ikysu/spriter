@@ -7,10 +7,8 @@ const generateList = () => {
             if (f !== -1 && selectedFile !== f) {
                 selectedFile = f;
                 if(!files[selectedFile]) return
-                render()
                 selection(files[selectedFile], false);
                 selectedFileElement.innerText = `Selected: ${files[selectedFile].name}`;
-                generateList();
             }
         })
         tr.dataset.file = file.name;
