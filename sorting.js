@@ -27,6 +27,8 @@ const sorting = () => {
   canvas.width = maxWidth;
   canvas.height = maxHeight;
 
+  ctx.clearRect(0,0,maxWidth,maxHeight);
+
   spritesheet.meta.size.w = maxWidth;
   spritesheet.meta.size.h = maxHeight;
 

@@ -19,7 +19,7 @@ const render = () => {
         h,
       },
     };
-
+    ctx.clearRect(x,y,w,h);
     ctx.drawImage(file, 0, 0, w, h, x, y, w, h);
   }
 
