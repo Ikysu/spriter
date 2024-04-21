@@ -58,6 +58,10 @@ document.body.addEventListener("keydown", (ev) => {
         ev.preventDefault();
         exportFiles();
         break;
+      case 65:
+        ev.preventDefault();
+        exportOne();
+        break;
       case 68:
         ev.preventDefault();
         if(delBlock) return;
