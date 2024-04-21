@@ -103,6 +103,7 @@ document.body.ondrop = async (ev) => {
   );
 
   render();
+  generateList();
 
   loading = false;
   hello.innerHTML =
