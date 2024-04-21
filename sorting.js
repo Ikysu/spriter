@@ -36,5 +36,7 @@ const sorting = () => {
   sorted = s;
   render();
   generateList();
-  delBlock=false;
+  setTimeout(()=>{
+    delBlock=false;
+  },500)
 }
