@@ -10,7 +10,7 @@ const generateList = () => {
                 }
                 selectedFile = f;
                 selection(files[selectedFile], false);
-                selectedFileElement.innerText = `Selected (Ctrl+C to Copy): ${files[selectedFile].name}`;
+                selectedFileElement.innerText = `Selected: ${files[selectedFile].name}`;
             }
         })
         tr.dataset.file = file.name;

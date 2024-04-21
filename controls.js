@@ -48,7 +48,15 @@ document.body.addEventListener("keydown", (ev) => {
       if(files[selectedFile]?.name) {
         alert(files[selectedFile]?.name);
       }
-      
+    }
+    if (ev.keyCode === 68) {
+      ev.preventDefault();
+      if (selectedFile === -1) return;
+      files.splice(selectedFile, 1);
+      selectedFile = -1;
+      render();
+      findSelection();
+      generateList();
     }
   }
 });

@@ -60,6 +60,7 @@ let selectedFile = -1,
   mouseX = -1,
   mouseY = -1;
 
+const padding = 8;
 const selection = ({ file, frame: { x, y, w, h }, name }, remove = false) => {
   if (remove) {
     list.querySelector(`tr[data-file="${name}"]`).style.backgroundColor=""
@@ -72,7 +73,6 @@ const selection = ({ file, frame: { x, y, w, h }, name }, remove = false) => {
     selectedViewCtx.clearRect(0, 0, w, h);
     selectedViewCtx.drawImage(file, 0, 0, w, h);
     ctx.drawImage(file, 0, 0, w, h, x, y, w, h);
-    const padding = 5;
     ctx.lineWidth = 10;
     ctx.strokeStyle = "red";
     ctx.strokeRect(x + padding, y + padding, w - padding * 2, h - padding * 2);
@@ -103,21 +103,12 @@ const findSelection = () => {
     }
     selectedFile = f;
     selection(files[selectedFile], false);
-    selectedFileElement.innerText = `Selected (Ctrl+C to Copy): ${files[selectedFile].name}`;
+    selectedFileElement.innerText = `Selected: ${files[selectedFile].name}`;
   }
 };
 
 canvas.addEventListener("mousemove", ({ offsetX, offsetY }) => {
   (mouseX = offsetX), (mouseY = offsetY);
-  findSelection();
-});
-
-canvas.addEventListener("click", (e) => {
-  if (selectedFile === -1) return;
-  files.splice(selectedFile, 1);
-  selectedFile = -1;
-  render();
-  generateList();
   findSelection();
 });
 
