@@ -61,7 +61,9 @@ let selectedFile = -1,
   mouseY = -1;
 
 const padding = 8;
-const selection = ({ file, frame: { x, y, w, h }, name }, remove = false) => {
+const selection = (f, remove = false) => {
+  if(!f)return;
+  const { file, frame: { x, y, w, h }, name } = f
   if (remove) {
     list.querySelector(`tr[data-file="${name}"]`).style.backgroundColor=""
     ctx.clearRect(x, y, w, h);
