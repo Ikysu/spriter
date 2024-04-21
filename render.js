@@ -41,7 +41,6 @@ const selection = (f) => {
   selectedView.height = h;
   selectedViewCtx.clearRect(0, 0, w, h);
   selectedViewCtx.drawImage(file, 0, 0, w, h);
-  ctx.drawImage(file, 0, 0, w, h, x, y, w, h);
   ctx.lineWidth = 10;
   ctx.strokeStyle = "red";
 
