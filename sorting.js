@@ -41,7 +41,5 @@ const sorting = () => {
   sorted = s;
   render();
   generateList();
-  setTimeout(()=>{
-    delBlock=false;
-  },500)
+  delBlock=false;
 }
