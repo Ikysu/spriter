@@ -30,7 +30,7 @@ let selectedFile = -1,
   mouseX = -1,
   mouseY = -1;
 
-const padding = 8;
+const padding = 10;
 const selection = (f) => {
   if(!f) return;
   render()
@@ -44,7 +44,6 @@ const selection = (f) => {
   ctx.drawImage(file, 0, 0, w, h, x, y, w, h);
   ctx.lineWidth = 10;
   ctx.strokeStyle = "red";
-  ctx.strokeRect(x + padding, y + padding, w - padding * 2, h - padding * 2);
 
   ctx.beginPath();
 
