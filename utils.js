@@ -11,7 +11,7 @@ let spritesheet = {
       h: 0,
     },
     multiplier: {
-      w: 4,
+      w: 1,
       h: 1,
     },
     scale: "1",
