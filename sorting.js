@@ -54,23 +54,22 @@ const sorting = () => {
       for (let mh=1;mh<=10;mh++) {
         const pre = preSorting(mw,mh);
         if(pre && goodest.good<pre.good) {
-          console.info("Good", pre)
           goodest = pre
         }
       }
     }
+    // idk but fix
+    goodest = preSorting(goodest.mw,goodest.mh)
   }else{
     const pre = preSorting(spritesheet.meta.multiplier.w,spritesheet.meta.multiplier.h);
     if(!pre) {
-      console.info("Bad! Decrease...")
       decreaseMultiplier()
       return sorting()
     }
-    console.info("Good", pre)
     goodest = pre
   }
 
-  const { s, maxWidth, maxHeight, mw, mh } = preSorting(goodest.mw,goodest.mh)
+  const { s, maxWidth, maxHeight, mw, mh } = goodest
 
   console.info(autoGoodest.checked, s)
 
