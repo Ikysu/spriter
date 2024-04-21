@@ -1,5 +1,6 @@
+let sorted = [];
 const sorting = () => {
-  const sorted = files.sort((a, b) => a.frame.h - b.frame.h).reverse();
+  const s = files.sort((a, b) => a.frame.h - b.frame.h).reverse();
 
   const cW =
     files.reduce((a, b) => a + b.frame.w, 0) / spritesheet.meta.multiplier.w,
@@ -12,15 +13,15 @@ const sorting = () => {
   let maxWidth = 0;
   let maxHeight = 0;
 
-  for (let i = 0; i < sorted.length; i++) {
-    const rect = new Rect(0, 0, sorted[i].frame.w, sorted[i].frame.h);
+  for (let i = 0; i < s.length; i++) {
+    const rect = new Rect(0, 0, s[i].frame.w, s[i].frame.h);
     const node = start_node.insert_rect(rect).rect;
-    sorted[i].frame.x = node.x;
-    sorted[i].frame.y = node.y;
-    if (maxWidth < sorted[i].frame.x + sorted[i].frame.w)
-      maxWidth = sorted[i].frame.x + sorted[i].frame.w;
-    if (maxHeight < sorted[i].frame.y + sorted[i].frame.h)
-      maxHeight = sorted[i].frame.y + sorted[i].frame.h;
+    s[i].frame.x = node.x;
+    s[i].frame.y = node.y;
+    if (maxWidth < s[i].frame.x + s[i].frame.w)
+      maxWidth = s[i].frame.x + s[i].frame.w;
+    if (maxHeight < s[i].frame.y + s[i].frame.h)
+      maxHeight = s[i].frame.y + s[i].frame.h;
   }
 
   canvas.width = maxWidth;
@@ -28,4 +29,6 @@ const sorting = () => {
 
   spritesheet.meta.size.w = maxWidth;
   spritesheet.meta.size.h = maxHeight;
+
+  sorted = s;
 }
