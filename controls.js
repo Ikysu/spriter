@@ -8,7 +8,7 @@ const exportOne = () => {
   a.click();
   a.remove();
 };
-document.getElementById("btn-export-one").addEventListener("click", saveTable);
+document.getElementById("btn-export-one").addEventListener("click", exportOne);
 
 const saveTable = () => {
   render()
