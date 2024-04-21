@@ -14,7 +14,9 @@ const saveTable = () => {
   a.setAttribute("download", "spritesheet.json");
   a.click();
   a.remove();
-  findSelection()
+  selectedFile = -1;
+  selectedViewCtx.clearRect(0, 0, selectedView.width, selectedView.height);
+  selectedFileElement.innerText = `Selected: none`
 };
 document.getElementById("btn-save").addEventListener("click", saveTable);
 
