@@ -72,13 +72,13 @@ const sorting = () => {
   spritesheet.meta.size.w = maxWidth;
   spritesheet.meta.size.h = maxHeight;
 
+  spritesheet.meta.multiplier.w = mw
+  spritesheet.meta.multiplier.h = mh
+
   multiW.value = spritesheet.meta.multiplier.w;
   multiWvalue.innerText = spritesheet.meta.multiplier.w;
   multiH.value = spritesheet.meta.multiplier.h;
   multiHvalue.innerText = spritesheet.meta.multiplier.h;
-
-  spritesheet.meta.multiplier.w = mw
-  spritesheet.meta.multiplier.h = mh
 
   sorted = s;
   render();
