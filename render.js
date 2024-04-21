@@ -107,7 +107,7 @@ const findSelection = () => {
 
 canvas.addEventListener("mousemove", ({ offsetX, offsetY }) => {
   (mouseX = offsetX), (mouseY = offsetY);
-  findSelection(offsetX, offsetY);
+  findSelection();
 });
 
 canvas.addEventListener("click", (e) => {
