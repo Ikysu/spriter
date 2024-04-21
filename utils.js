@@ -37,4 +37,5 @@ autoGoodest.addEventListener("change", ()=>{
   localStorage.setItem("auto-goodest", autoGoodest.checked ? "1" : "0")
   multiW.disabled = autoGoodest.checked;
   multiH.disabled = autoGoodest.checked;
+  sorting()
 })
