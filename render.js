@@ -31,14 +31,14 @@ let selectedFile = -1,
   mouseY = -1;
 
 const padding = 10;
-const selection = (f) => {
+const selection = (f, scrilling=false) => {
   if(!f) return;
   render()
   const { file, frame: { x, y, w, h }, name } = f;
   [...list.children].map(e=>e.style.backgroundColor="")
   const element = list.querySelector(`tr[data-file="${name}"]`)
   element.style.backgroundColor="red"
-  list.scrollTo(0,element.offsetTop)
+  if(scrilling) list.scrollTo(0,element.offsetTop)
   selectedView.width = w;
   selectedView.height = h;
   selectedViewCtx.clearRect(0, 0, w, h);
@@ -68,7 +68,7 @@ const findSelection = () => {
   );
   if (f !== -1 && files[f] && selectedFile !== f) {
     selectedFile = f;
-    selection(files[selectedFile]);
+    selection(files[selectedFile], true);
   }
 };
 
