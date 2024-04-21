@@ -43,12 +43,6 @@ document.body.addEventListener("keydown", (ev) => {
       ev.preventDefault();
       exportFiles();
     }
-    if (ev.keyCode === 67) {
-      ev.preventDefault();
-      if(files[selectedFile]?.name) {
-        alert(files[selectedFile]?.name);
-      }
-    }
     if (ev.keyCode === 68) {
       ev.preventDefault();
       if(delBlock) return;
