@@ -68,7 +68,7 @@ const findSelection = () => {
   );
   if (f !== -1 && files[f] && selectedFile !== f) {
     selectedFile = f;
-    selection(files[selectedFile], true);
+    selection(files[selectedFile]);
   }
 };
 
