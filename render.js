@@ -53,6 +53,7 @@ const selection = (f) => {
   ctx.moveTo(x + w - padding, y + padding);
   ctx.lineTo(x + padding, y + h - padding);
   ctx.stroke();
+  selectedFileElement.innerText = `Selected: ${name}`;
 };
 
 const findSelection = () => {
@@ -65,8 +66,7 @@ const findSelection = () => {
   );
   if (f !== -1 && files[f] && selectedFile !== f) {
     selectedFile = f;
-    selection(files[selectedFile], false);
-    selectedFileElement.innerText = `Selected: ${files[selectedFile].name}`;
+    selection(files[selectedFile]);
   }
 };
 
