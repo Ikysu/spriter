@@ -31,6 +31,7 @@ body {
   padding: 1em;
   display: flex;
   justify-content: space-between;
+  max-height: -webkit-fill-available;
 }
 #container > canvas {
   max-width: 50%;
