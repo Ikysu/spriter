@@ -35,7 +35,6 @@ document.getElementById("btn-export").addEventListener("click", exportFiles);
 let delBlock = true;
 document.body.addEventListener("keydown", (ev) => {
   if (ev.ctrlKey) {
-    console.info(ev.keyCode);
     if (ev.keyCode === 83) {
       ev.preventDefault();
       saveTable();
