@@ -13,7 +13,7 @@ const generateList = () => {
         const td = document.createElement("td")
         td.innerText=file.name;
         td.contentEditable=true;
-        td.addEventListener("change", ()=>{
+        td.addEventListener("input", ()=>{
             const alreadyExists = files.findIndex(f=>f.name===td.innerText)
             if(alreadyExists !== -1) {
                 alert("Already exists!")
