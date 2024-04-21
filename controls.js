@@ -37,24 +37,29 @@ document.getElementById("btn-export").addEventListener("click", exportFiles);
 let delBlock = true;
 document.body.addEventListener("keydown", (ev) => {
   if (ev.ctrlKey) {
-    if (ev.keyCode === 83) {
-      ev.preventDefault();
-      saveTable();
-    }
-    if (ev.keyCode === 69) {
-      ev.preventDefault();
-      exportFiles();
-    }
-    if (ev.keyCode === 68) {
-      ev.preventDefault();
-      if(delBlock) return;
-      if (selectedFile === -1) return;
-      selectedViewCtx.clearRect(0, 0, selectedView.width, selectedView.height);
-      selectedFileElement.innerText = `Selected: none`
-      files.splice(selectedFile, 1);
-      selectedFile = -1;
-      sorting();
-      findSelection();
+    switch(ev.keyCode) {
+      case 83:
+        ev.preventDefault();
+        saveTable();
+        break;
+      case 69:
+        ev.preventDefault();
+        exportFiles();
+        break;
+      case 68:
+        ev.preventDefault();
+        if(delBlock) return;
+        if (selectedFile === -1) return;
+        selectedViewCtx.clearRect(0, 0, selectedView.width, selectedView.height);
+        selectedFileElement.innerText = `Selected: none`
+        files.splice(selectedFile, 1);
+        selectedFile = -1;
+        sorting();
+        findSelection();
+        break;
+      default:
+        console.info(ev.keyCode)
+        break;
     }
   }
 });
