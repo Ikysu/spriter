@@ -56,11 +56,11 @@ document.body.addEventListener("keydown", (ev) => {
         break;
       case 69:
         ev.preventDefault();
-        exportFiles();
+        exportOne();
         break;
       case 65:
         ev.preventDefault();
-        exportOne();
+        exportFiles();
         break;
       case 68:
         ev.preventDefault();
