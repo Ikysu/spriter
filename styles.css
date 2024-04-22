@@ -107,4 +107,6 @@ body {
 #canvas {
   max-width: -webkit-fill-available;
   max-height: -webkit-fill-available;
+  position: relative;
+  border: 1px blue solid;
 }
