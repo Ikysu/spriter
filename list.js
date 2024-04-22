@@ -15,8 +15,17 @@ const generateList = () => {
         tdName.innerText=file.name
         tr.appendChild(tdName)
 
+        const tdExport = document.createElement("td")
+        tdExport.innerText="E"
+        tdExport.style.cursor="pointer";
+        tdExport.addEventListener("click", ()=>{
+            if(f !== selectedFile) return
+            exportOne()
+        })
+        tr.appendChild(tdExport)
+
         const tdEdit = document.createElement("td")
-        tdEdit.innerText="E"
+        tdEdit.innerText="RN"
         tdEdit.style.cursor="pointer";
         tdEdit.addEventListener("click", ()=>{
             const newname = prompt("New name", file.name)
@@ -32,7 +41,7 @@ const generateList = () => {
         tr.appendChild(tdEdit)
 
         const tdDel = document.createElement("td")
-        tdDel.innerText="D"
+        tdDel.innerText="DEL"
         tdDel.style.cursor="pointer";
         tdDel.addEventListener("click", ()=>{
             if(f !== selectedFile) return

@@ -83,12 +83,11 @@ body {
   display: flex;
   width: inherit;
   justify-content: space-between;
+  gap: 0.5em;
 }
 #list > tr > td {
   padding: 0.2em;
   display: block;
-  word-break: break-all;
-  padding-right: 1em;
 }
 #list > tr > td:first-child {
   display: inline-block;
