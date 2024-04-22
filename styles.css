@@ -44,6 +44,8 @@ body {
 #info {
   padding: 1em;
   color: white;
+  gap: 1em;
+  display: flex;
 }
 
 #info > br {
