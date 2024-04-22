@@ -45,6 +45,19 @@ body {
   padding: 1em;
   color: white;
 }
+
+#info > br {
+  display: inline-block;
+  overflow: hidden !important;
+  padding-right: 0.5em;
+}
+
+#info > #selected-file {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 50vw;
+}
+
 #top {
   width: 100%;
   position: fixed;
@@ -60,7 +73,7 @@ body {
 
 #list {
   color: white;
-  max-width: 50%;
+  width: 40vw;
   min-width: max-content;
   height: auto;
   display: block;
@@ -68,6 +81,7 @@ body {
 }
 #list > tr {
   display: flex;
+  width: inherit;
   justify-content: space-between;
 }
 #list > tr > td {
@@ -77,6 +91,10 @@ body {
   padding-right: 1em;
 }
 #list > tr > td:first-child {
+  display: inline-block;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   width: -webkit-fill-available;
 }
 #list > tr > td:last-child {
