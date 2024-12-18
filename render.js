@@ -3,9 +3,14 @@ const selectedFileElement = document.getElementById("selected-file");
 const render = () => {
   for (let i = 0; i < sorted.length; i++) {
     const { name, frame, file } = sorted[i];
-    let { w, h, x, y } = frame;
+    let { w, h, x, y, pw, ph, px, py } = frame;
     spritesheet.frames[name] = {
-      frame,
+      frame: {
+        x: px,
+        y: py,
+        w,
+        h,
+      },
       rotated: false,
       trimmed: false,
       spriteSourceSize: {
@@ -19,8 +24,8 @@ const render = () => {
         h,
       },
     };
-    ctx.clearRect(x,y,w,h);
-    ctx.drawImage(file, 0, 0, w, h, x, y, w, h);
+    ctx.clearRect(px, py, w, h);
+    ctx.drawImage(file, 0, 0, w, h, px, py, w, h);
   }
 
   renderAspect = canvas.width / canvas.offsetWidth;
@@ -31,14 +36,18 @@ let selectedFile = -1,
   mouseY = -1;
 
 const padding = 10;
-const selection = (f, scrilling=false) => {
-  if(!f) return;
-  render()
-  const { file, frame: { x, y, w, h }, name } = f;
-  [...list.children].map(e=>e.style.backgroundColor="")
-  const element = list.querySelector(`tr[data-file="${name}"]`)
-  element.style.backgroundColor="red"
-  if(scrilling) list.scrollTo(0,element.offsetTop)
+const selection = (f, scrilling = false) => {
+  if (!f) return;
+  render();
+  const {
+    file,
+    frame: { x, y, w, h },
+    name,
+  } = f;
+  [...list.children].map((e) => (e.style.backgroundColor = ""));
+  const element = list.querySelector(`tr[data-file="${name}"]`);
+  element.style.backgroundColor = "red";
+  if (scrilling) list.scrollTo(0, element.offsetTop);
   selectedView.width = w;
   selectedView.height = h;
   selectedViewCtx.clearRect(0, 0, w, h);

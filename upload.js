@@ -38,7 +38,7 @@ document.body.ondrop = async (ev) => {
     async function loop(id) {
       if (!frames[id]) return;
 
-      let { frame } = json.frames[frames[id]];
+      let { frame, original } = json.frames[frames[id]];
 
       canvas.width = frame.w;
       canvas.height = frame.h;
@@ -105,5 +105,5 @@ document.body.ondrop = async (ev) => {
 
   loading = false;
   hello.innerHTML =
-    "Drop <b>spritesheet.json</b> and <b>spritesheet.png</b> OR <b>sprites</b> (png's)";
+    "Drop (<b>spritesheet.json</b> and <b>spritesheet.png</b>) OR <b>png-sprites</b>";
 };

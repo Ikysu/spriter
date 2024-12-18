@@ -16,12 +16,92 @@ body {
   background-color: black;
   height: 100vh;
 }
+
+#paddings {
+  color: white;
+  padding: 0 1em;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  border-right: 1px solid white;
+}
+
+#paddings > div {
+  display: flex;
+  flex-direction: row;
+  padding: 3px 0;
+}
+#paddings > div > input {
+  width: 3em;
+  -moz-appearance: textfield;
+}
+#paddings > h4 {
+  text-align: center;
+  border: 2px dashed rgb(81, 255, 0);
+  padding: 3px;
+}
+
+#paddings > div > input::-webkit-outer-spin-button,
+#paddings > div > input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+#paddings-wh {
+  color: white;
+  padding: 0 1em;
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  border-right: 1px solid white;
+}
+#paddings-wh > h4 {
+  border: 2px dashed rgb(255, 0, 255);
+  padding: 3px;
+  text-align: center;
+}
+
+#paddings-visualizer {
+  padding: 0 1em;
+  border-right: 1px solid white;
+  display: flex;
+  flex-direction: column;
+}
+
+#paddings-wh > h4 {
+  text-align: center;
+}
+
+#pd-visual {
+  margin: auto;
+}
+
+#pd-visual-real_sprite {
+  background-color: rgb(228, 228, 228);
+  width: 1em;
+  height: 1em;
+}
+
+#pd-visual-frame {
+  border: 2px dashed rgb(255, 0, 255);
+  padding: 1px;
+  width: fit-content;
+}
+
+#pd-visual-per_sprite {
+  border: 2px dashed rgb(81, 255, 0);
+  padding: 2px;
+  width: fit-content;
+}
+
 #multiplier {
   color: white;
   padding: 0 1em;
   display: flex;
   flex-direction: column;
   width: fit-content;
+  border-right: 1px solid white;
 }
 #multiplier > h4 {
   text-align: center;
@@ -40,6 +120,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  border-right: 1px solid white;
+  padding: 0 1em;
 }
 #info {
   padding: 1em;
